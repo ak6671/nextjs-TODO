@@ -4,6 +4,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: aliceblue;
 }
 
 a {
@@ -23,4 +24,116 @@ a {
     color: white;
     background: black;
   }
+}
+
+/* * {
+  padding: 0;
+  margin: 0;
+} */
+.box {
+  display: flex;
+  justify-items: flex-start;
+  align-items: center;
+  gap: 30px 20px;
+  padding: 2rem;
+  color: aliceblue;
+}
+.checkbox {
+  padding: 10px;
+}
+.checked {
+  text-decoration: line-through rgb(68, 68, 68) 5px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  align-items: center;
+}
+.button {
+  border: 0;
+  padding: 1rem;
+  background-color: rgb(241, 113, 141);
+}
+.text {
+  padding: 1rem;
+  margin: 0 1rem;
+}
+
+.text1 {
+  color: white;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(to right, blue, red);
+}
+
+.checkbox {
+  /* Add if not using autoprefixer */
+  -webkit-appearance: none;
+  /* Remove most all native input styles */
+  appearance: none;
+  /* For iOS < 15 */
+  background-color: var(--form-background);
+  /* Not removed via appearance */
+  margin: 0;
+
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+}
+
+.checkbox::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--form-control-color);
+  /* Windows High Contrast Mode */
+  background-color: white;
+}
+
+.checkbox:checked::before {
+  transform: scale(1);
+}
+
+.checkbox:focus {
+  outline: max(2px, 0.15em) solid currentColor;
+  outline-offset: max(2px, 0.15em);
+}
+
+.checkbox:disabled {
+  --form-control-color: var(--form-control-disabled);
+
+  color: var(--form-control-disabled);
+  cursor: not-allowed;
+}
+.App {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1020%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%230e2a47'%3e%3c/rect%3e%3cpath d='M1154.6452416105262 282.37612266594186L1234.339865454553 215.50439319160677 1167.468135980218 135.8097693475798 1087.7735121361911 202.68149882191491z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M212.75 210.75 a158.46 158.46 0 1 0 316.92 0 a158.46 158.46 0 1 0 -316.92 0z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1253.4444975262552 54.43227294696381L1323.158081035906 157.78691083352524 1426.5127189224672 88.07332732387451 1356.7991354128167-15.281310562686919z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1285.22 203.73 a128.7 128.7 0 1 0 257.4 0 a128.7 128.7 0 1 0 -257.4 0z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M891.2 155.12 a156.29 156.29 0 1 0 312.58 0 a156.29 156.29 0 1 0 -312.58 0z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M464.033580046917 386.7874080491099L464.03358004691705 535.7716611629594 613.0178331607665 535.7716611629594 613.0178331607665 386.78740804910984z' fill='rgba(28%2c 83%2c 142%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1020'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
+  background-position: 50%;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.Go_to_link {
+  font-size: 20px;
+  font-style: normal;
+  margin-top: 1rem;
+  background-color: cornflowerblue;
+  padding: 10px;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 2px solid black;
+  color: rgb(255, 255, 255);
 }

@@ -38,12 +38,10 @@ function App() {
     // setTimeout(() => {
     //   setShow(false);
     // }, 1000);
-    axios
-      .get("https://nextjs-todo-git-main-ajak7770-gmailcom.vercel.app/api/list")
-      .then((response) => {
-        //console.log("res", response.data);
-        setInit(response.data);
-      });
+    axios.get("https:/api/list").then((response) => {
+      //console.log("res", response.data);
+      setInit(response.data);
+    });
   }, []);
   console.log("init", init);
   return (

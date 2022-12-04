@@ -1,33 +1,31 @@
 import Todo from "./Todo";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
-  const [init, setInit] = useState([
-    {
-      name: "add your first todo",
-      checked: false,
-    },
-  ]);
+  const [init, setInit] = useState([]);
   const [text, setText] = useState("");
   const handleTextBox = (e) => {
-    console.log("text");
     setText(e.target.value);
   };
-  const addText = (e) => {
+  const addText = async (e) => {
     e.preventDefault();
     if (text !== "") {
+      const article = { value: text, checked: false, id: init.length + 1 };
       setInit((prevState) => [
         ...prevState,
         {
-          name: text,
+          id: init.length + 1,
+          value: text,
           checked: false,
         },
       ]);
       setText("");
+      const response = await axios.post("http:/api/list", article);
     }
   };
 
-  const [show, setShow] = useState(true);
+  //const [show, setShow] = useState(true);
 
   const handleKeypress = (e) => {
     //it triggers by pressing the enter key
@@ -37,11 +35,15 @@ function App() {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setShow(false);
-    }, 1000);
+    // setTimeout(() => {
+    //   setShow(false);
+    // }, 1000);
+    axios.get("http:/api/list").then((response) => {
+      //console.log("res", response.data);
+      setInit(response.data);
+    });
   }, []);
-
+  console.log("init", init);
   return (
     <div className="App">
       <div className="text1">
@@ -50,6 +52,7 @@ function App() {
       <div>
         <form className="grid">
           <input
+            placeholder="Enter Todo"
             value={text}
             type={"text"}
             className="text"
@@ -57,12 +60,18 @@ function App() {
             onKeyPress={handleKeypress}
           ></input>
           <button onClick={addText} className="button">
-            Add
+            ADD
           </button>
         </form>
       </div>
+
       {init.map((row, index) => (
-        <Todo name={row.name} key={index} checked={row.checked}></Todo>
+        <Todo
+          name={row.value}
+          id={row.id}
+          key={index}
+          checked={row.checked}
+        ></Todo>
       ))}
     </div>
   );

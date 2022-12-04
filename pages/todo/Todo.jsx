@@ -6,7 +6,7 @@ export default function Todo(props) {
 
   const handlechecked = async (e) => {
     setChecked(e.target.checked);
-    const response = await axios.patch("http:/api/list", {
+    const response = await axios.patch("https:/api/list", {
       id: props.id,
       checked: e.target.checked,
       value: props.name,

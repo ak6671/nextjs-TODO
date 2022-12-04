@@ -21,7 +21,7 @@ function App() {
         },
       ]);
       setText("");
-      const response = await axios.post("http:/api/list", article);
+      const response = await axios.post("https:/api/list", article);
     }
   };
 
@@ -38,7 +38,7 @@ function App() {
     // setTimeout(() => {
     //   setShow(false);
     // }, 1000);
-    axios.get("http:/api/list").then((response) => {
+    axios.get("https:/api/list").then((response) => {
       //console.log("res", response.data);
       setInit(response.data);
     });

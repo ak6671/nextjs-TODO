@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import clientPromise from "../mongodb";
+import clientPromise from "../api/mongodb";
 
 let todos = [{ id: 1, value: "add your first todo", checked: false }];
 

@@ -1,9 +1,19 @@
 import Todo from "./Todo";
-import { useEffect, useState } from "react";
+import { useEffect, useState,CSSProperties } from "react";
 import axios from "axios";
+import { SyncLoader } from "react-spinners";
+
+
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
+
 
 function App() {
   const [init, setInit] = useState([]);
+  const [spinner, setSpinner] = useState(true);
   const [text, setText] = useState("");
   const handleTextBox = (e) => {
     setText(e.target.value);
@@ -35,9 +45,11 @@ function App() {
   };
 
   const handleDelete = () => {
+    setSpinner(true)
     axios.get("https:/api/list").then((response) => {
       //console.log("res", response.data);
       setInit(response.data);
+      setSpinner(false)
     });
   };
 
@@ -48,6 +60,7 @@ function App() {
     axios.get("https:/api/list").then((response) => {
       //console.log("res", response.data);
       setInit(response.data);
+      setSpinner(false)
     });
   }, []);
   console.log("init", init);
@@ -82,6 +95,14 @@ function App() {
           handleDelete={handleDelete}
         ></Todo>
       ))}
+      <SyncLoader
+       color="#36d7b7"
+        loading={spinner}
+        cssOverride={override}
+        size={20}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
     </div>
   );
 }

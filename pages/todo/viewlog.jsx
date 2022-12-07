@@ -1,5 +1,12 @@
 import { redis } from "../lib/lib"
 
+export async function getServerSideProps(context) {
+  const entries = await redis.lrange("todo_log", 0, -1);
+  return {
+    props: { entries },
+  };
+}
+
 export default function ViewLog(props) {
   return (
     <div>
@@ -16,9 +23,4 @@ export default function ViewLog(props) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const entries = await redis.lrange("todo_log", 0, -1);
-  return {
-    props: { entries },
-  };
-}
+

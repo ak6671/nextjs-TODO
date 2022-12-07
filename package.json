@@ -9,12 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@upstash/redis": "^1.18.1",
     "axios": "^1.2.0",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
-    "firebase": "^9.14.0",
     "mongodb": "^3.5.9",
     "next": "13.0.5",
+    "next-useragent": "^2.8.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   }

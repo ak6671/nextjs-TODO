@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import clientPromise from "../api/mongodb";
+import clientPromise from "./mongodb";
 
 let todos = [{ id: 1, value: "add your first todo", checked: false }];
 
@@ -22,6 +22,29 @@ export default async function handler(req, res) {
       //   checked,
       // });
       res.status(200).json("success");
+      break;
+    case "DELETE":
+      const { dbid, id: i1, value: v1, checked: c1 } = req.body;
+      //const responce = await db.collection("todos").findOne({ _id: dbid });
+      const responce = await db
+        .collection("todos")
+        .findOne({ _id: "638d8eb431939a000818f5ac" });
+
+      // const res1 = db
+      //   .collection("todos")
+      //   .findOne(
+      //     { $expr: { $eq: ["$id", "$$targetFlavor"] } },
+      //     { _id: 0 },
+      //     { let: { targetFlavor: `${req.body.id}` } }
+      //   );
+      // todos.push({
+      //findOneAndDelete;
+      //   id: todos.length + 1,
+      //   value,
+      //   checked,
+      // });
+      //console.log(res1);
+      res.status(200).json({ one: req.body.dbid, responce });
       break;
     case "PATCH":
       console.log("req", req.body);
@@ -74,6 +97,7 @@ export default async function handler(req, res) {
 
       res.status(200).json("updated");
       break;
+
     default:
       res.setHeader("Allow", ["GET", "POST", "PATCH"]);
       res.status(405).end(`Method ${method} Not Allowed`);

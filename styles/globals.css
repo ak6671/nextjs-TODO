@@ -31,45 +31,70 @@ a {
   margin: 0;
 } */
 .box {
+  margin: 0.8rem 0;
   display: flex;
   justify-items: flex-start;
   align-items: center;
   gap: 30px 20px;
-  padding: 2rem;
-  padding-bottom: 0rem;
-  color: aliceblue;
+  padding: 2rem 1.5rem;
+
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  background-color: rgba(228, 228, 228, 0.911);
+  border-radius: 10px;
+}
+.values {
+  display: flex;
+  align-items: center;
+}
+.value {
+  margin: 0;
+  margin-left: 0.8rem;
+}
+.deleteCTA {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(241, 122, 122);
+}
+.deleteCTA:hover {
+  cursor: pointer;
+}
+.box.true {
+  background-color: rgba(127, 255, 212, 0.568);
 }
 .checkbox {
   padding: 10px;
 }
 .checked {
   text-decoration: line-through rgb(78, 78, 78) 2px;
-  color: rgb(9, 213, 9);
 }
 .nochecked {
-  color: rgb(243, 250, 52);
+  color: black;
 }
 .grid {
   display: grid;
   grid-template-columns: 70% 30%;
   align-items: center;
+  margin-bottom: 1.5rem;
 }
 .button {
   border: 0;
-  padding: 0.8rem;
+  padding: 1rem;
   background-color: rgb(10, 91, 232);
   cursor: pointer;
   color: white;
   border: 2px solid white;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 17px;
 }
 .text {
   padding: 1.1rem;
   margin: 0 1rem;
   margin-left: 0;
   cursor: text;
-  border: rgb(0, 0, 0);
+  border: 2px solid rgb(0, 0, 0);
+  font-size: 1rem;
 }
 .text::placeholder {
   font-size: 1rem;
@@ -125,7 +150,7 @@ a {
   transition: 120ms transform ease-in-out;
   box-shadow: inset 1em 1em var(--form-control-color);
   /* Windows High Contrast Mode */
-  background-color: white;
+  background-color: rgb(0, 0, 0);
 }
 
 .checkbox:checked::before {
@@ -147,11 +172,14 @@ a {
   text-align: center;
   padding: 0;
   margin: 0;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask3863%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='url(%23SvgjsLinearGradient3864)'%3e%3c/rect%3e%3cpath d='M1114.6031282620495 492.70030694292996L1080.504025386698 586.1097411741954 1166.3589669161634 572.5116543109552z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M825.6865069557967 524.1577348011239L819.7173013083601 438.79411701945304 734.3536835266893 444.7633226668896 740.322889174126 530.1269404485605z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M84.98772633631422 248.20994700388638L201.19137815613408 196.47274787609712 149.4541790283448 80.26909605627728 33.25052720852497 132.00629518406652z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M-7.22 432.27 a147.24 147.24 0 1 0 294.48 0 a147.24 147.24 0 1 0 -294.48 0z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M83.15587596242783 435.8539589471265L-18.65270955945573 476.98729751314886 93.95159105051964 609.133506512963z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1084.83 421.42 a107.94 107.94 0 1 0 215.88 0 a107.94 107.94 0 1 0 -215.88 0z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1066.9917498453701 23.670895663118415L1040.5530554998816 148.05517313620112 1164.9373329729644 174.4938674816896 1191.3760273184528 50.109590008606865z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1404.5212645389568-14.4429852622522L1244.269750407487 60.097673889668314 1369.2613685888236 150.90940014261756z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float1'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask3863'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='15.28%25' y1='-39.29%25' x2='84.72%25' y2='139.29%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient3864'%3e%3cstop stop-color='rgba(14%2c 42%2c 71%2c 1)' offset='0.53'%3e%3c/stop%3e%3cstop stop-color='rgba(255%2c 0%2c 229%2c 1)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
-  background-position: 50%;
+  /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask3863%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='url(%23SvgjsLinearGradient3864)'%3e%3c/rect%3e%3cpath d='M1114.6031282620495 492.70030694292996L1080.504025386698 586.1097411741954 1166.3589669161634 572.5116543109552z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M825.6865069557967 524.1577348011239L819.7173013083601 438.79411701945304 734.3536835266893 444.7633226668896 740.322889174126 530.1269404485605z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M84.98772633631422 248.20994700388638L201.19137815613408 196.47274787609712 149.4541790283448 80.26909605627728 33.25052720852497 132.00629518406652z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M-7.22 432.27 a147.24 147.24 0 1 0 294.48 0 a147.24 147.24 0 1 0 -294.48 0z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M83.15587596242783 435.8539589471265L-18.65270955945573 476.98729751314886 93.95159105051964 609.133506512963z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1084.83 421.42 a107.94 107.94 0 1 0 215.88 0 a107.94 107.94 0 1 0 -215.88 0z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1066.9917498453701 23.670895663118415L1040.5530554998816 148.05517313620112 1164.9373329729644 174.4938674816896 1191.3760273184528 50.109590008606865z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1404.5212645389568-14.4429852622522L1244.269750407487 60.097673889668314 1369.2613685888236 150.90940014261756z' fill='rgba(146%2c 41%2c 224%2c 0.63)' class='triangle-float1'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask3863'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='15.28%25' y1='-39.29%25' x2='84.72%25' y2='139.29%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient3864'%3e%3cstop stop-color='rgba(14%2c 42%2c 71%2c 1)' offset='0.53'%3e%3c/stop%3e%3cstop stop-color='rgba(255%2c 0%2c 229%2c 1)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e"); */
+  /* background-position: 50%; */
+  background-color: aliceblue;
   background-size: cover;
   min-height: 100vh;
   padding: 2rem;
+  max-width: 700px;
+  margin: auto;
 }
 
 .Go_to_link {

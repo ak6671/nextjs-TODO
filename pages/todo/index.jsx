@@ -34,11 +34,18 @@ function App() {
     }
   };
 
+  const handleDelete = () => {
+    axios.get("https:/api/list").then((response) => {
+      //console.log("res", response.data);
+      setInit(response.data);
+    });
+  };
+
   useEffect(() => {
     // setTimeout(() => {
     //   setShow(false);
     // }, 1000);
-    axios.get("https:/api/list").then((response) => {
+    axios.get("https:/api/list1").then((response) => {
       //console.log("res", response.data);
       setInit(response.data);
     });
@@ -71,6 +78,8 @@ function App() {
           id={row.id}
           key={index}
           checked={row.checked}
+          row={row}
+          handleDelete={handleDelete}
         ></Todo>
       ))}
     </div>

@@ -13,19 +13,38 @@ export default function Todo(props) {
     });
     console.log("res", response);
   };
+
+  const handleDelete = async (e) => {
+    const response = await axios.post("https:/api/delete", {
+      id: props.id,
+      checked: e.target.checked,
+      value: props.name,
+      dbid: props._id,
+    });
+    props.handleDelete(props.id);
+    console.log("res", response);
+  };
+
   return (
     <>
-      <div className="box">
-        <input
-          className="checkbox"
-          type={"checkbox"}
-          onClick={handlechecked}
-          checked={checked}
-        ></input>
+      <div className={checked == !true ? "box" : "box true"}>
+        <div className="values">
+          <input
+            className="checkbox"
+            type={"checkbox"}
+            onClick={handlechecked}
+            checked={checked}
+          ></input>
 
-        <h3 className={checked == !true ? "nochecked" : "checked"}>
-          {props.name}
-        </h3>
+          <h3
+            className={checked == !true ? "value nochecked" : "value checked"}
+          >
+            {props.name}
+          </h3>
+        </div>
+        <div className="deleteCTA" onClick={handleDelete}>
+          X
+        </div>
       </div>
     </>
   );

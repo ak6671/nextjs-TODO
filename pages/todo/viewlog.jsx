@@ -1,4 +1,4 @@
-import { redis } from "../lib/lib"
+import { redis } from "../api/lib/lib"
 
 export async function getServerSideProps(context) {
   const entries = await redis.lrange("todo_log", 0, -1);

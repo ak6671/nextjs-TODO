@@ -1,4 +1,4 @@
-import { redis } from "../api/lib";
+import { redis } from "../lib/lib"
 
 export default function ViewLog(props) {
   return (

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { redis } from "./pages/api/lib";
+import { redis } from "./pages/lib/lib";
 
 export function middleware(request) {
   const time = Date.now();

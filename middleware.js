@@ -17,9 +17,10 @@ export async function middleware(request) {
     url: request.url,
   };
 
-  const res = await redis.lpush("todo_log", logData);
-  console.log("res", res);
+  await redis.lpush("todo_log", logData);
+
   return NextResponse.redirect(new URL("/api/list", request.url));
+
 }
 export const config = {
   matcher: "/api/list1",

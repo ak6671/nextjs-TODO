@@ -17,6 +17,7 @@
     "mongodb": "^3.5.9",
     "next": "13.0.5",
     "next-useragent": "^2.8.0",
+    "node-fetch": "^3.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-spinners": "^0.13.7"

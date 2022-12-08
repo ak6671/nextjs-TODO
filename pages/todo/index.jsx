@@ -1,15 +1,13 @@
 import Todo from "./Todo";
-import { useEffect, useState,CSSProperties } from "react";
+import { useEffect, useState, CSSProperties, useCallback } from "react";
 import axios from "axios";
 import { SyncLoader } from "react-spinners";
-
 
 const override = {
   display: "block",
   margin: "0 auto",
   borderColor: "red",
 };
-
 
 function App() {
   const [init, setInit] = useState([]);
@@ -44,14 +42,14 @@ function App() {
     }
   };
 
-  const handleDelete = () => {
-    setSpinner(true)
+  const handleDelete = useCallback(() => {
+    setSpinner(true);
     axios.get("https:/api/list").then((response) => {
       //console.log("res", response.data);
       setInit(response.data);
-      setSpinner(false)
+      setSpinner(false);
     });
-  };
+  }, []);
 
   useEffect(() => {
     // setTimeout(() => {
@@ -60,7 +58,7 @@ function App() {
     axios.get("https:/api/list").then((response) => {
       //console.log("res", response.data);
       setInit(response.data);
-      setSpinner(false)
+      setSpinner(false);
     });
   }, []);
   console.log("init", init);
@@ -96,7 +94,7 @@ function App() {
         ></Todo>
       ))}
       <SyncLoader
-       color="#36d7b7"
+        color="#36d7b7"
         loading={spinner}
         cssOverride={override}
         size={20}

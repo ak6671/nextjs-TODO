@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import axios from "axios";
 
-export default function Todo(props) {
+export default React.memo(function Todo(props) {
   const [checked, setChecked] = useState(props.checked);
 
   const handlechecked = async (e) => {
@@ -14,16 +14,19 @@ export default function Todo(props) {
     console.log("res", response);
   };
 
-  const handleDelete = async (e) => {
-    const response = await axios.post("https:/api/delete", {
-      id: props.id,
-      checked: e.target.checked,
-      value: props.name,
-      dbid: props._id,
-    });
-    props.handleDelete(props.id);
-    console.log("res", response);
-  };
+  const handleDelete = useCallback(
+    async (e) => {
+      const response = await axios.post("https:/api/delete", {
+        id: props.id,
+        checked: e.target.checked,
+        value: props.name,
+        dbid: props._id,
+      });
+      props.handleDelete(props.id);
+      console.log("res", response);
+    },
+    [props]
+  );
 
   return (
     <>
@@ -48,4 +51,4 @@ export default function Todo(props) {
       </div>
     </>
   );
-}
+});

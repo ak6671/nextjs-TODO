@@ -16,6 +16,7 @@ function App() {
   const handleTextBox = (e) => {
     setText(e.target.value);
   };
+
   const addText = async (e) => {
     e.preventDefault();
     if (text !== "") {
@@ -29,7 +30,7 @@ function App() {
         },
       ]);
       setText("");
-      const response = await axios.post("https:/api/list1", article);
+      const response = await axios.post("http:/api/list1", article);
     }
   };
 
@@ -44,7 +45,7 @@ function App() {
 
   const handleDelete = useCallback(() => {
     setSpinner(true);
-    axios.get("https:/api/list").then((response) => {
+    axios.get("http:/api/list").then((response) => {
       //console.log("res", response.data);
       setInit(response.data);
       setSpinner(false);
@@ -55,15 +56,23 @@ function App() {
     // setTimeout(() => {
     //   setShow(false);
     // }, 1000);
-    axios.get("https:/api/list").then((response) => {
+    axios.get("http:/api/list").then((response) => {
       //console.log("res", response.data);
       setInit(response.data);
       setSpinner(false);
     });
   }, []);
-  console.log("init", init);
+
+  const handleDate = (e) => {
+    //console.log("e", e.target.value);
+    const date = new Date(e.target.value).getDate();
+    const month = new Date(e.target.value).getMonth() + 1;
+    console.log("e", { date, month });
+  };
   return (
     <div className="App">
+      <input type="date" id="datepicker" onChange={handleDate} />
+
       <div className="text1">
         <p>TODO LIST</p>
       </div>

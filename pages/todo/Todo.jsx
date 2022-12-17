@@ -1,12 +1,13 @@
 import React, { useCallback, useState } from "react";
 import axios from "axios";
+import { arrayStrictEqual } from "mongodb/lib/core/utils";
 
 export default React.memo(function Todo(props) {
   const [checked, setChecked] = useState(props.checked);
 
   const handlechecked = async (e) => {
     setChecked(e.target.checked);
-    const response = await axios.patch("https:/api/list", {
+    const response = await axios.patch("http:/api/list", {
       id: props.id,
       checked: e.target.checked,
       value: props.name,
@@ -14,9 +15,10 @@ export default React.memo(function Todo(props) {
     console.log("res", response);
   };
 
+  arrayStrictEqual.fo;
   const handleDelete = useCallback(
     async (e) => {
-      const response = await axios.post("https:/api/delete", {
+      const response = await axios.post("http:/api/delete", {
         id: props.id,
         checked: e.target.checked,
         value: props.name,

@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import clientPromise from "./mongodb";
-
+const TelegramBot = require("node-telegram-bot-api");
 let todos = [{ id: 1, value: "add your first todo", checked: false }];
 
 export default async function handler(req, res) {
@@ -11,7 +11,7 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       const alltodos = await db.collection("todos").find({}).toArray();
-      const TelegramBot = require("node-telegram-bot-api");
+
       const token = "5900235060:AAEzRL2guwdWZ-_BNvzurKjpAdVuPDKg5fc";
       const bot = new TelegramBot(token, { polling: true });
       bot.sendMessage("-703129226", "Hey user", {

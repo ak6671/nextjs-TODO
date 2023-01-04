@@ -1,16 +1,10 @@
 import { verifySignature } from "@upstash/qstash/nextjs";
-import fetch from "node-fetch";
 
 async function handler(req, res) {
-  if (req.method === "POST") {
-    try {
-      console.log("hello from cron task");
-      res.status(200).json("success");
-    } catch (err) {}
-  } else {
-    res.setHeader("Allow", "POST");
-    res.status(405).end("Method Not Allowed");
-  }
+  console.log("If this is printed, the signature has already been verified");
+
+  // do stuff
+  res.status(200).end();
 }
 
 export default verifySignature(handler);

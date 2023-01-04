@@ -5,6 +5,7 @@ async function handler(req, res) {
   if (req.method === "POST") {
     try {
       console.log("hello from cron task");
+      res.status(200).json("success");
     } catch (err) {}
   } else {
     res.setHeader("Allow", "POST");

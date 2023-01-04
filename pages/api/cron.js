@@ -1,12 +1,12 @@
 import { verifySignature } from "@upstash/qstash/nextjs";
 
-async function handler(req, res) {
+export default async function handler(req, res) {
   console.log("If this is printed, the signature has already been verified");
   // Download the helper library from https://www.twilio.com/docs/node/install
   // Find your Account SID and Auth Token at twilio.com/console
   // and set the environment variables. See http://twil.io/secure
-  const accountSid = process.env.TWILIO_ACCOUNT_SID;
-  const authToken = process.env.TWILIO_AUTH_TOKEN;
+  const accountSid = "ACa33a991929b5a71406dfe6276e5253fb";
+  const authToken = "9fa307556b4f26f4349e1cdba85c3947";
   const client = require("twilio")(accountSid, authToken);
 
   client.messages
@@ -17,7 +17,7 @@ async function handler(req, res) {
   res.status(200).end();
 }
 
-export default verifySignature(handler);
+verifySignature(handler);
 
 export const config = {
   api: {

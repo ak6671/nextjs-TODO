@@ -2,6 +2,7 @@ import Todo from "./Todo";
 import { useEffect, useState, CSSProperties, useCallback } from "react";
 import axios from "axios";
 import { SyncLoader } from "react-spinners";
+import ThemeToggle from "../../components/ThemeToggle";
 
 const override = {
   display: "block",
@@ -25,10 +26,7 @@ function App() {
       const listaddedTime = new Date();
       const article = { value: text, checked: false, listaddedTime };
 
-      const { data } = await axios.post(
-        "https:/api/list",
-        article
-      );
+      const { data } = await axios.post("https:/api/list", article);
       setInit((prevState) => [
         ...prevState,
         {
@@ -76,6 +74,7 @@ function App() {
     <div className="App">
       <div className="text1">
         <p>TODO LIST</p>
+        <ThemeToggle />
       </div>
       <div>
         <form className="grid">

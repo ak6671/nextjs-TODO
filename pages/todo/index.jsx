@@ -29,7 +29,7 @@ function App() {
         },
       ]);
       setText("");
-      const response = await axios.post("https:/api/list1", article);
+      const response = await axios.post("https:/api/list", article);
     }
   };
 

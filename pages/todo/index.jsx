@@ -13,24 +13,33 @@ function App() {
   const [init, setInit] = useState([]);
   const [spinner, setSpinner] = useState(true);
   const [text, setText] = useState("");
-  const result = init.reverse()
+  const result = [...init].sort(
+    (a, b) => new Date(b.listaddedTime) - new Date(a.listaddedTime)
+  );
   const handleTextBox = (e) => {
     setText(e.target.value);
   };
   const addText = async (e) => {
     e.preventDefault();
     if (text !== "") {
-      const article = { value: text, checked: false, id: init.length + 1 };
+      const listaddedTime = new Date();
+      const article = { value: text, checked: false, listaddedTime };
+
+      const { data } = await axios.post(
+        "https:/api/list",
+        article
+      );
       setInit((prevState) => [
         ...prevState,
         {
-          id: init.length + 1,
+          _id: data,
           value: text,
           checked: false,
+          listaddedTime,
         },
       ]);
+
       setText("");
-      const response = await axios.post("https:/api/list", article);
     }
   };
 
@@ -52,15 +61,15 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    // setTimeout(() => {
-    //   setShow(false);
-    // }, 1000);
+  const refetch = () => {
     axios.get("https:/api/list").then((response) => {
-      //console.log("res", response.data);
       setInit(response.data);
       setSpinner(false);
     });
+  };
+
+  useEffect(() => {
+    refetch();
   }, []);
   console.log("init", init);
   return (
@@ -84,14 +93,16 @@ function App() {
         </form>
       </div>
 
-      {result.map((row, index) => (
+      {result.map((row) => (
         <Todo
           name={row.value}
-          id={row.id}
-          key={index}
+          _id={row._id}
+          key={row._id}
           checked={row.checked}
           row={row}
           handleDelete={handleDelete}
+          refetch={refetch}
+          listaddedTime={row.listaddedTime}
         ></Todo>
       ))}
       <SyncLoader

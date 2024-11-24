@@ -15,87 +15,29 @@ export default async function handler(req, res) {
       break;
     case "POST":
       const { value, checked } = req.body;
-      await db.collection("todos").insertOne(req.body);
-      // todos.push({
-      //   id: todos.length + 1,
-      //   value,
-      //   checked,
-      // });
-      res.status(200).json("success");
-      break;
-    case "DELETE":
-      const { dbid, id: i1, value: v1, checked: c1 } = req.body;
-      //const responce = await db.collection("todos").findOne({ _id: dbid });
-      const responce = await db
-        .collection("todos")
-        .findOne({ _id: "638d8eb431939a000818f5ac" });
-
-      // const res1 = db
-      //   .collection("todos")
-      //   .findOne(
-      //     { $expr: { $eq: ["$id", "$$targetFlavor"] } },
-      //     { _id: 0 },
-      //     { let: { targetFlavor: `${req.body.id}` } }
-      //   );
-      // todos.push({
-      //findOneAndDelete;
-      //   id: todos.length + 1,
-      //   value,
-      //   checked,
-      // });
-      //console.log(res1);
-      res.status(200).json({ one: req.body.dbid, responce });
+      const dbres = await db.collection("todos").insertOne(req.body);
+      res.status(200).json(dbres.insertedId);
       break;
     case "PATCH":
-      console.log("req", req.body);
-      const { id, checked: check, value: v } = req.body;
+      const { _id, checked: check, value: v, listaddedTime } = req.body;
+      const { ObjectId } = require("mongodb");
 
-      // const Next = await db
-      //   .collection("todos")
-      //   .findOneAndUpdate({ id }, { checked: check });
+      console.log("Updating todo:", {
+        _id,
+        check,
+        v,
+        objectId: new ObjectId(_id),
+      });
 
-      // const response = await db
-      //   .collection("todos")
-      //   .findOneAndReplace(
-      //     { id, checked: !check, v },
-      //     { id, checked: check, v }
-      //   );
-      // console.log("response", response);
-
-      let todo;
-
-      // try {
-      //   todo = await db
-      //     .collection("todos")
-      //     .findOneAndUpdate({ id }, { id, checked: check, value: v });
-      //   console.log(todo);
-      // } catch (err) {
-      //   console.log(err);
-      //   const error = new Error(
-      //     "Something went wrong, could not update place.",
-      //     500
-      //   );
-      // }
-      await db
+      const dbPATCHres = await db
         .collection("todos")
         .updateOne(
-          { id },
-          { $set: { id, checked: check, value: v } },
-          { upsert: true }
+          { _id: new ObjectId(_id) },
+          { $set: { checked: check, value: v, listaddedTime } }
         );
-      // try {
-      //   await todo.save();
-      // } catch (err) {
-      //   const error = new Error(
-      //     "Something went wrong, could not update place.",
-      //     500
-      //   );
-      // }
-      //var foundIndex = todos.findIndex((x) => x.id == id);
 
-      //todos[foundIndex].checked = check;
-
-      res.status(200).json("updated");
+      console.log("Update result:", dbPATCHres);
+      res.status(200).json(dbPATCHres);
       break;
 
     default:

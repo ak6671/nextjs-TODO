@@ -7,20 +7,22 @@ export default React.memo(function Todo(props) {
   const handlechecked = async (e) => {
     setChecked(e.target.checked);
     const response = await axios.patch("https:/api/list", {
-      id: props.id,
+      _id: props._id,
       checked: e.target.checked,
       value: props.name,
+      listaddedTime: props.listaddedTime,
     });
     console.log("res", response);
+    props.refetch();
   };
 
   const handleDelete = useCallback(
     async (e) => {
       const response = await axios.post("https:/api/delete", {
-        id: props.id,
+        _id: props._id,
         checked: e.target.checked,
         value: props.name,
-        dbid: props._id,
+        listaddedTime: props.listaddedTime,
       });
       props.handleDelete(props.id);
       console.log("res", response);

@@ -83,7 +83,7 @@ function App() {
         </form>
       </div>
 
-      {init.map((row, index) => (
+      {init.reverse.map((row, index) => (
         <Todo
           name={row.value}
           id={row.id}

@@ -13,6 +13,7 @@ function App() {
   const [init, setInit] = useState([]);
   const [spinner, setSpinner] = useState(true);
   const [text, setText] = useState("");
+  const result = init.reverse()
   const handleTextBox = (e) => {
     setText(e.target.value);
   };
@@ -83,7 +84,7 @@ function App() {
         </form>
       </div>
 
-      {init.reverse.map((row, index) => (
+      {result.map((row, index) => (
         <Todo
           name={row.value}
           id={row.id}

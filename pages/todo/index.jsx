@@ -76,6 +76,9 @@ function App() {
         <p>Todo List</p>
         <ThemeToggle />
       </div>
+      <div className="info-text">
+        <p>ℹ️ Your todos are saved to MongoDB and are permanent</p>
+      </div>
       <div>
         <form className="grid">
           <input

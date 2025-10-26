@@ -65,7 +65,7 @@ function App() {
   return (
     <div className="App">
       <div className="text1">
-        <p>TODO LIST</p>
+        <p>Todo List</p>
       </div>
       <div>
         <form className="grid">

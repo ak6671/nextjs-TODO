@@ -2,6 +2,7 @@ import Todo from "./Todo";
 import { useEffect, useState, CSSProperties, useCallback } from "react";
 import axios from "axios";
 import { SyncLoader } from "react-spinners";
+import ThemeToggle from "../../components/ThemeToggle";
 
 const override = {
   display: "block",
@@ -13,23 +14,30 @@ function App() {
   const [init, setInit] = useState([]);
   const [spinner, setSpinner] = useState(true);
   const [text, setText] = useState("");
+  const result = [...init].sort(
+    (a, b) => new Date(b.listaddedTime) - new Date(a.listaddedTime)
+  );
   const handleTextBox = (e) => {
     setText(e.target.value);
   };
   const addText = async (e) => {
     e.preventDefault();
     if (text !== "") {
-      const article = { value: text, checked: false, id: init.length + 1 };
+      const listaddedTime = new Date();
+      const article = { value: text, checked: false, listaddedTime };
+
+      const { data } = await axios.post("https:/api/list", article);
       setInit((prevState) => [
         ...prevState,
         {
-          id: init.length + 1,
+          _id: data,
           value: text,
           checked: false,
+          listaddedTime,
         },
       ]);
+
       setText("");
-      const response = await axios.post("https:/api/list1", article);
     }
   };
 
@@ -51,21 +59,22 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    // setTimeout(() => {
-    //   setShow(false);
-    // }, 1000);
+  const refetch = () => {
     axios.get("https:/api/list").then((response) => {
-      //console.log("res", response.data);
       setInit(response.data);
       setSpinner(false);
     });
+  };
+
+  useEffect(() => {
+    refetch();
   }, []);
   console.log("init", init);
   return (
     <div className="App">
       <div className="text1">
         <p>Todo List</p>
+        <ThemeToggle />
       </div>
       <div>
         <form className="grid">
@@ -83,14 +92,16 @@ function App() {
         </form>
       </div>
 
-      {init.map((row, index) => (
+      {result.map((row) => (
         <Todo
           name={row.value}
-          id={row.id}
-          key={index}
+          _id={row._id}
+          key={row._id}
           checked={row.checked}
           row={row}
           handleDelete={handleDelete}
+          refetch={refetch}
+          listaddedTime={row.listaddedTime}
         ></Todo>
       ))}
       <SyncLoader
